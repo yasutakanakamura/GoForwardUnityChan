@@ -9,10 +9,13 @@ public class CubeController : MonoBehaviour {
 
 	//消滅位置
 	private float deadLine = -10;
+	//Audio
+	private AudioSource audioSource;
 
 	// Use this for initialization
 	void Start () {
-		
+		//Audioコンポーネントの取得
+		audioSource = gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +27,15 @@ public class CubeController : MonoBehaviour {
 		if (transform.position.x < this.deadLine) {
 			Destroy (gameObject);
 		}
-		
+	}
+	void OnCollisionEnter2D(Collision2D other){
+		if (other.gameObject.tag == "GroundTag"){
+			//Debug.Log(gameObject);
+			audioSource.Play ();
+		}
+		if (other.gameObject.tag == "BlockTag"){
+			//Debug.Log(gameObject);
+			audioSource.Play ();
+		}
 	}
 }
